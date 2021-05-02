@@ -1,0 +1,180 @@
+From b2983cd8ea911cf5d797309941a5566364f8e980 Mon Sep 17 00:00:00 2001
+From: jacaru <1446775+jacaru@users.noreply.github.com>
+Date: Sat, 24 Apr 2021 01:11:29 +0200
+Subject: [PATCH 04/13] Add watched_at field to trakt_lookup
+
+---
+ flexget/components/trakt/api_trakt.py    | 70 ++++++++++++++++++++----
+ flexget/components/trakt/trakt_lookup.py |  2 +
+ 2 files changed, 62 insertions(+), 10 deletions(-)
+
+diff --git a/flexget/components/trakt/api_trakt.py b/flexget/components/trakt/api_trakt.py
+index 44dd3db6e..df1be1c9f 100644
+--- a/flexget/components/trakt/api_trakt.py
++++ b/flexget/components/trakt/api_trakt.py
+@@ -63,6 +63,10 @@ class TraktUserCache(TimedDict):
+             cache[media_id] = media
+             cache[media_id]['watched_at'] = dateutil_parse(media['last_watched_at'], ignoretz=True)
+             cache[media_id]['plays'] = media['plays']
++            if 'seasons' in cache[media_id]:
++                for season in cache[media_id]['seasons']:
++                    for episode in season['episodes']:
++                        episode['watched_at'] = dateutil_parse(episode['last_watched_at'], ignoretz=True)
+ 
+     def _update_ratings_cache(self, cache, media_type, username=None, account=None):
+         ratings = db.get_user_data(
+@@ -135,6 +139,12 @@ class ApiTrakt:
+                 'episode': self.is_episode_watched,
+                 'movie': self.is_movie_watched,
+             },
++            'watched_at': {
++                'show': self.show_watched_at,
++                'season': self.season_watched_at,
++                'episode': self.episode_watched_at,
++                'movie': self.movie_watched_at,
++            },
+             'collected': {
+                 'show': self.is_show_in_collection,
+                 'season': self.is_season_in_collection,
+@@ -327,9 +337,10 @@ class ApiTrakt:
+         )
+         return in_collection
+ 
+-    def is_show_watched(self, trakt_data, title):
++    def show_watched(self, trakt_data, title):
+         cache = user_cache.get_watched_shows(username=self.username, account=self.account)
+         is_watched = False
++        watched_at = None
+         if trakt_data.id in cache:
+             series = cache[trakt_data.id]
+             # specials are not included
+@@ -337,34 +348,52 @@ class ApiTrakt:
+                 len(s['episodes']) for s in series['seasons'] if s['number'] > 0
+             )
+             is_watched = number_of_watched_episodes == trakt_data.aired_episodes
++            watched_at = cache[trakt_data.id]['watched_at']
+ 
+         logger.debug(
+             'The result for show entry "{}" is: {}',
+             title,
+             'Watched' if is_watched else 'Not watched',
++            watched_at if watched_at else '',
+         )
+-        return is_watched
++        return is_watched, watched_at
+ 
+-    def is_season_watched(self, trakt_data, title):
++    def is_show_watched(self, trakt_data, title):
++        return self.show_watched(trakt_data, title)[0]
++
++    def show_watched_at(self, trakt_data, title):
++        return self.show_watched(trakt_data, title)[1]
++
++    def season_watched(self, trakt_data, title):
+         cache = user_cache.get_watched_shows(username=self.username, account=self.account)
+ 
+         is_watched = False
++        watched_at = None
+         if trakt_data.show.id in cache:
+             series = cache[trakt_data.show.id]
+             for s in series['seasons']:
+                 if trakt_data.number == s['number']:
+                     is_watched = True
++                    watched_at = max(e['watched_at'] for e in s['episodes'])
+                     break
+         logger.debug(
+             'The result for season entry "{}" is: {}',
+             title,
+             'Watched' if is_watched else 'Not watched',
++            watched_at if watched_at else '',
+         )
+-        return is_watched
++        return is_watched, watched_at
+ 
+-    def is_episode_watched(self, trakt_data, title):
++    def is_season_watched(self, trakt_data, title):
++        return self.season_watched(trakt_data, title)[0]
++
++    def season_watched_at(self, trakt_data, title):
++        return self.season_watched(trakt_data, title)[1]
++
++    def episode_watched(self, trakt_data, title):
+         cache = user_cache.get_watched_shows(username=self.username, account=self.account)
+         is_watched = False
++        watched_at = None
+         if trakt_data.show.id in cache:
+             series = cache[trakt_data.show.id]
+             for s in series['seasons']:
+@@ -372,23 +401,44 @@ class ApiTrakt:
+                     # extract all episode numbers currently in collection for the season number
+                     episodes = [ep['number'] for ep in s['episodes']]
+                     is_watched = trakt_data.number in episodes
++                    it = (i for i,v in s['episodes'].enumerate() if s['episodes'][i]['number'] == trakt_data.number)
++                    pos = next(it, None)
++                    watched_at = s['episodes'][pos]['watched_at'] if pos else None
+                     break
+         logger.debug(
+             'The result for episode entry "{}" is: {}',
+             title,
+             'Watched' if is_watched else 'Not watched',
++            watched_at if watched_at else '',
+         )
+-        return is_watched
++        return is_watched, watched_at
+ 
+-    def is_movie_watched(self, trakt_data, title):
++    def is_episode_watched(self, trakt_data, title):
++        return self.episode_watched(trakt_data, title)[0]
++
++    def episode_watched_at(self, trakt_data, title):
++        return self.episode_watched(trakt_data, title)[1]
++
++    def movie_watched(self, trakt_data, title):
+         cache = user_cache.get_watched_movies(username=self.username, account=self.account)
+-        is_watched = trakt_data.id in cache
++        is_watched = False
++        watched_at = None
++        if trakt_data.id in cache:
++            is_watched = True
++            watched_at = cache[trakt_data.id]['watched_at']
+         logger.debug(
+-            'The result for movie entry "{}" is: {}',
++            'The result for movie entry "{}" is: {} {}',
+             title,
+             'Watched' if is_watched else 'Not watched',
++            watched_at if watched_at else '',
+         )
+-        return is_watched
++        return is_watched, watched_at
++
++    def is_movie_watched(self, trakt_data, title):
++        return self.movie_watched(trakt_data, title)[0]
++
++    def movie_watched_at(self, trakt_data, title):
++        return self.movie_watched(trakt_data, title)[1]
+ 
+     def show_user_ratings(self, trakt_data, title):
+         cache = user_cache.get_show_user_ratings(username=self.username, account=self.account)
+diff --git a/flexget/components/trakt/trakt_lookup.py b/flexget/components/trakt/trakt_lookup.py
+index deb6c83a2..da1c99427 100644
+--- a/flexget/components/trakt/trakt_lookup.py
++++ b/flexget/components/trakt/trakt_lookup.py
+@@ -221,6 +221,7 @@ def add_lazy_fields(entry: entry.Entry, lazy_lookup_name: str, media_type: str)
+ user_data_fields = {
+     'collected': 'trakt_collected',
+     'watched': 'trakt_watched',
++    'watched_at': 'trakt_watched_at',
+     'ratings': {
+         'show': 'trakt_series_user_rating',
+         'season': 'trakt_season_user_rating',
+@@ -348,6 +349,7 @@ class PluginTraktLookup:
+                 if media_type:
+                     add_lazy_user_fields(entry, 'collected', media_type=media_type, **credentials)
+                     add_lazy_user_fields(entry, 'watched', media_type=media_type, **credentials)
++                    add_lazy_user_fields(entry, 'watched_at', media_type=media_type, **credentials)
+                 if is_show(entry):
+                     add_lazy_user_fields(entry, 'ratings', media_type='show', **credentials)
+                     if is_season(entry):
+-- 
+2.20.1
+

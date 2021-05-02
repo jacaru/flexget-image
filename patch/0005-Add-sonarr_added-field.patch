@@ -1,0 +1,24 @@
+From 5d10586800f345ec9538b7bea86a647157f68430 Mon Sep 17 00:00:00 2001
+From: jacaru <1446775+jacaru@users.noreply.github.com>
+Date: Sat, 24 Apr 2021 01:14:01 +0200
+Subject: [PATCH 05/13] Add sonarr_added field
+
+---
+ flexget/components/managed_lists/lists/sonarr_list.py | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/flexget/components/managed_lists/lists/sonarr_list.py b/flexget/components/managed_lists/lists/sonarr_list.py
+index 28f17105d..fc62081ae 100644
+--- a/flexget/components/managed_lists/lists/sonarr_list.py
++++ b/flexget/components/managed_lists/lists/sonarr_list.py
+@@ -161,6 +161,7 @@ class SonarrSet(MutableSet):
+                 imdb_id=show.get('imdbid'),
+                 slug=show.get('titleSlug'),
+                 sonarr_id=show.get('id'),
++                sonarr_added=show.get('added'),
+             )
+             if len(fg_qualities) > 1:
+                 entry['configure_series_qualities'] = fg_qualities
+-- 
+2.20.1
+

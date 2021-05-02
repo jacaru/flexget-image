@@ -1,0 +1,42 @@
+From 4b70fc5d43da7f59083d419320376c68d8af21df Mon Sep 17 00:00:00 2001
+From: jacaru <1446775+jacaru@users.noreply.github.com>
+Date: Sat, 24 Apr 2021 01:51:09 +0200
+Subject: [PATCH 10/13] Avoid lazy lookup on manipulate remove
+
+---
+ flexget/plugins/modify/manipulate.py | 12 +++++++-----
+ 1 file changed, 7 insertions(+), 5 deletions(-)
+
+diff --git a/flexget/plugins/modify/manipulate.py b/flexget/plugins/modify/manipulate.py
+index e76d98cb0..61bed970b 100644
+--- a/flexget/plugins/modify/manipulate.py
++++ b/flexget/plugins/modify/manipulate.py
+@@ -115,6 +115,13 @@ class Manipulate:
+                 from_field = field
+                 if 'from' in config:
+                     from_field = config['from']
++                if config.get('remove'):
++                    try:
++                        del entry[field]
++                        modified = True
++                    except KeyError:
++                        pass
++                    continue
+                 field_value = entry.get(from_field)
+                 logger.debug(
+                     'field: `{}` from_field: `{}` field_value: `{}`',
+@@ -122,11 +129,6 @@ class Manipulate:
+                     from_field,
+                     field_value,
+                 )
+-                if config.get('remove'):
+-                    if field in entry:
+-                        del entry[field]
+-                        modified = True
+-                    continue
+                 if 'extract' in config:
+                     if not field_value:
+                         logger.warning('Cannot extract, field `{}` is not present', from_field)
+-- 
+2.20.1
+

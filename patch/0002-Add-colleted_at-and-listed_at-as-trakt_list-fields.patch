@@ -1,0 +1,43 @@
+From 4ec04f0d21a58b250af7944fd1e435c3e4ee5018 Mon Sep 17 00:00:00 2001
+From: jacaru <1446775+jacaru@users.noreply.github.com>
+Date: Fri, 23 Apr 2021 23:17:31 +0200
+Subject: [PATCH 02/13] Add colleted_at and listed_at as trakt_list fields
+
+---
+ flexget/components/trakt/trakt_list.py | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/flexget/components/trakt/trakt_list.py b/flexget/components/trakt/trakt_list.py
+index 14fab2ecc..3dbcdd2e0 100644
+--- a/flexget/components/trakt/trakt_list.py
++++ b/flexget/components/trakt/trakt_list.py
+@@ -63,6 +63,8 @@ field_maps = {
+         'tmdb_id': 'movie.ids.tmdb',
+         'trakt_movie_id': 'movie.ids.trakt',
+         'trakt_movie_slug': 'movie.ids.slug',
++        'trakt_listed_at': 'listed_at',
++        'trakt_collected_at': 'collected_at',
+     },
+     'show': {
+         'title': generate_show_title,
+@@ -75,6 +77,8 @@ field_maps = {
+         'tmdb_id': 'show.ids.tmdb',
+         'trakt_show_id': 'show.ids.trakt',
+         'trakt_show_slug': 'show.ids.slug',
++        'trakt_listed_at': 'listed_at',
++        'trakt_last_collected_at': 'last_collected_at',
+     },
+     'episode': {
+         'title': generate_episode_title,
+@@ -91,6 +95,8 @@ field_maps = {
+         'trakt_show_id': 'show.ids.trakt',
+         'trakt_show_slug': 'show.ids.slug',
+         'trakt_ep_name': 'episode.title',
++        'trakt_listed_at': 'listed_at',
++        'trakt_collected_at': 'collected_at',
+     },
+ }
+ 
+-- 
+2.20.1
+

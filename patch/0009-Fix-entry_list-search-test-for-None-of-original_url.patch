@@ -1,0 +1,25 @@
+From adaff56ab4acd66bee7483f3ee7fe37a27792007 Mon Sep 17 00:00:00 2001
+From: jacaru <1446775+jacaru@users.noreply.github.com>
+Date: Sat, 24 Apr 2021 01:46:44 +0200
+Subject: [PATCH 09/13] Fix entry_list search test for None of original_url
+
+---
+ flexget/components/managed_lists/lists/entry_list/db.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/flexget/components/managed_lists/lists/entry_list/db.py b/flexget/components/managed_lists/lists/entry_list/db.py
+index 5a2ea8bc3..6799552e5 100644
+--- a/flexget/components/managed_lists/lists/entry_list/db.py
++++ b/flexget/components/managed_lists/lists/entry_list/db.py
+@@ -119,7 +119,7 @@ class DBEntrySet(MutableSet):
+                     or_(
+                         EntryListEntry.title == entry['title'],
+                         and_(
+-                            EntryListEntry.original_url,
++                            EntryListEntry.original_url.isnot(None),
+                             EntryListEntry.original_url == entry['original_url'],
+                         ),
+                     ),
+-- 
+2.20.1
+

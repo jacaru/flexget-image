@@ -1,0 +1,27 @@
+From 0072a4971d29e783e251d8e2da4bd38fb4e08331 Mon Sep 17 00:00:00 2001
+From: jacaru <1446775+jacaru@users.noreply.github.com>
+Date: Sat, 24 Apr 2021 01:54:47 +0200
+Subject: [PATCH 12/13] Fix entry_list entry refresh on add
+
+---
+ flexget/components/managed_lists/lists/entry_list/db.py | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/flexget/components/managed_lists/lists/entry_list/db.py b/flexget/components/managed_lists/lists/entry_list/db.py
+index 6799552e5..b9161f153 100644
+--- a/flexget/components/managed_lists/lists/entry_list/db.py
++++ b/flexget/components/managed_lists/lists/entry_list/db.py
+@@ -157,7 +157,9 @@ class DBEntrySet(MutableSet):
+             if stored_entry:
+                 # Refresh all the fields if we already have this entry
+                 logger.debug('refreshing entry {}', entry)
+-                stored_entry.entry = entry
++                new_entry = Entry(stored_entry.entry)
++                new_entry.update(entry)
++                stored_entry.entry = new_entry
+             else:
+                 logger.debug('adding entry {} to list {}', entry, self._db_list(session).name)
+                 stored_entry = EntryListEntry(entry=entry, entry_list_id=self._db_list(session).id)
+-- 
+2.20.1
+

@@ -1,0 +1,40 @@
+From 197a0b870abfe933d7624c36167c2d46a7e2107c Mon Sep 17 00:00:00 2001
+From: jacaru <1446775+jacaru@users.noreply.github.com>
+Date: Sat, 24 Apr 2021 01:28:02 +0200
+Subject: [PATCH 06/13] Add search option to radarr list plugin
+
+---
+ flexget/components/managed_lists/lists/radarr_list.py | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/flexget/components/managed_lists/lists/radarr_list.py b/flexget/components/managed_lists/lists/radarr_list.py
+index 4ac4b02df..8d4401be7 100644
+--- a/flexget/components/managed_lists/lists/radarr_list.py
++++ b/flexget/components/managed_lists/lists/radarr_list.py
+@@ -395,6 +395,7 @@ class RadarrSet(MutableSet):
+         if result:
+             root_folders = self.service.get_root_folders()
+             root_folder_path = root_folders[0]["path"]
++            add_options = {'searchForMovie': True } if self.config.get('search') else None
+ 
+             try:
+                 self.service.add_movie(
+@@ -406,6 +407,7 @@ class RadarrSet(MutableSet):
+                     result["tmdbId"],
+                     root_folder_path,
+                     monitored=self.config.get('monitored', False),
++                    add_options=add_options,
+                     tags=self.get_tag_ids(entry),
+                 )
+                 logger.verbose('Added movie {} to Radarr list', result['title'])
+@@ -620,6 +622,7 @@ class RadarrList:
+             "api_key": {"type": "string"},
+             "only_monitored": {"type": "boolean", "default": True},
+             "include_data": {"type": "boolean", "default": False},
++            "search": {"type": "boolean", "default": False},
+             "only_use_cutoff_quality": {"type": "boolean", "default": False},
+             "monitored": {"type": "boolean", "default": True},
+             "profile_id": {"type": "integer", "default": 1},
+-- 
+2.20.1
+
