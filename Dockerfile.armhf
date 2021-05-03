@@ -17,16 +17,14 @@ RUN apk add --no-cache --virtual .build-deps \
     linux-headers
 
 COPY etc/ /etc
-COPY patch /patch
+COPY patch /tmp/flexget-patch
 
 ARG VERSION
 RUN pip3 install --upgrade pip \
     && git clone --branch $VERSION --depth 1 https://github.com/Flexget/Flexget.git \
     && cd Flexget \
-    && git apply -v /patch/* \
-    && pip3 install -e . \
-    && cd .. \
-    && rm -rf Flexget /patch
+    && git apply -v /tmp/flexget-patch/* \
+    && pip3 install -e .
 
 RUN apk del .build-deps
 
