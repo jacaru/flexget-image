@@ -47,5 +47,6 @@ jobs:
           platforms: linux/arm/v7
           push: true
           tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             VERSION=${{ steps.extract.outputs.version }}
