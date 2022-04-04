@@ -1,7 +1,7 @@
-From 5d10586800f345ec9538b7bea86a647157f68430 Mon Sep 17 00:00:00 2001
+From 2e96458c36d7673b72ac80375414fd95f996fc19 Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:14:01 +0200
-Subject: [PATCH 05/13] Add sonarr_added field
+Subject: [PATCH 04/12] Add sonarr_added field
 
 ---
  flexget/components/managed_lists/lists/sonarr_list.py | 1 +
@@ -20,5 +20,5 @@ index 28f17105d..fc62081ae 100644
              if len(fg_qualities) > 1:
                  entry['configure_series_qualities'] = fg_qualities
 -- 
-2.20.1
+2.30.2
 

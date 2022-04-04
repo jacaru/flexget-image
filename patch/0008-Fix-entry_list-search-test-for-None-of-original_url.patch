@@ -1,7 +1,7 @@
-From adaff56ab4acd66bee7483f3ee7fe37a27792007 Mon Sep 17 00:00:00 2001
+From 59414e1953038406c5da993198e318b0c90bde9c Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:46:44 +0200
-Subject: [PATCH 09/13] Fix entry_list search test for None of original_url
+Subject: [PATCH 08/12] Fix entry_list search test for None of original_url
 
 ---
  flexget/components/managed_lists/lists/entry_list/db.py | 2 +-
@@ -21,5 +21,5 @@ index 5a2ea8bc3..6799552e5 100644
                          ),
                      ),
 -- 
-2.20.1
+2.30.2
 

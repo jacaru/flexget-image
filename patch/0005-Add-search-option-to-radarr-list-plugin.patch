@@ -1,14 +1,14 @@
-From 197a0b870abfe933d7624c36167c2d46a7e2107c Mon Sep 17 00:00:00 2001
+From d4f0e3662faa5105dce4c97fe20876ce756e308c Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:28:02 +0200
-Subject: [PATCH 06/13] Add search option to radarr list plugin
+Subject: [PATCH 05/12] Add search option to radarr list plugin
 
 ---
  flexget/components/managed_lists/lists/radarr_list.py | 3 +++
  1 file changed, 3 insertions(+)
 
 diff --git a/flexget/components/managed_lists/lists/radarr_list.py b/flexget/components/managed_lists/lists/radarr_list.py
-index 4ac4b02df..8d4401be7 100644
+index cc29a3a0b..8b857443f 100644
 --- a/flexget/components/managed_lists/lists/radarr_list.py
 +++ b/flexget/components/managed_lists/lists/radarr_list.py
 @@ -395,6 +395,7 @@ class RadarrSet(MutableSet):
@@ -36,5 +36,5 @@ index 4ac4b02df..8d4401be7 100644
              "monitored": {"type": "boolean", "default": True},
              "profile_id": {"type": "integer", "default": 1},
 -- 
-2.20.1
+2.30.2
 

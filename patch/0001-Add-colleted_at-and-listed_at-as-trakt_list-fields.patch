@@ -1,14 +1,14 @@
-From 4ec04f0d21a58b250af7944fd1e435c3e4ee5018 Mon Sep 17 00:00:00 2001
+From a2811e189f28a47ecfabb0e07d8aaf41fad3d960 Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Fri, 23 Apr 2021 23:17:31 +0200
-Subject: [PATCH 02/13] Add colleted_at and listed_at as trakt_list fields
+Subject: [PATCH 01/12] Add colleted_at and listed_at as trakt_list fields
 
 ---
  flexget/components/trakt/trakt_list.py | 6 ++++++
  1 file changed, 6 insertions(+)
 
 diff --git a/flexget/components/trakt/trakt_list.py b/flexget/components/trakt/trakt_list.py
-index 14fab2ecc..3dbcdd2e0 100644
+index b88a19ff5..c538fc100 100644
 --- a/flexget/components/trakt/trakt_list.py
 +++ b/flexget/components/trakt/trakt_list.py
 @@ -63,6 +63,8 @@ field_maps = {
@@ -39,5 +39,5 @@ index 14fab2ecc..3dbcdd2e0 100644
  }
  
 -- 
-2.20.1
+2.30.2
 

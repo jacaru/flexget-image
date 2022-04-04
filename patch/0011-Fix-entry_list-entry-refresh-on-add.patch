@@ -1,7 +1,7 @@
-From 0072a4971d29e783e251d8e2da4bd38fb4e08331 Mon Sep 17 00:00:00 2001
+From cbdf3203ec52b43e0ed59090e8a8d2df63079ac8 Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:54:47 +0200
-Subject: [PATCH 12/13] Fix entry_list entry refresh on add
+Subject: [PATCH 11/12] Fix entry_list entry refresh on add
 
 ---
  flexget/components/managed_lists/lists/entry_list/db.py | 4 +++-
@@ -23,5 +23,5 @@ index 6799552e5..b9161f153 100644
                  logger.debug('adding entry {} to list {}', entry, self._db_list(session).name)
                  stored_entry = EntryListEntry(entry=entry, entry_list_id=self._db_list(session).id)
 -- 
-2.20.1
+2.30.2
 

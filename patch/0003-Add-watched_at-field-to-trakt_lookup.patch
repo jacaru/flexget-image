@@ -1,7 +1,7 @@
-From b2983cd8ea911cf5d797309941a5566364f8e980 Mon Sep 17 00:00:00 2001
+From 50c43012da8535cf7c217d16d6bea251ce7ce448 Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:11:29 +0200
-Subject: [PATCH 04/13] Add watched_at field to trakt_lookup
+Subject: [PATCH 03/12] Add watched_at field to trakt_lookup
 
 ---
  flexget/components/trakt/api_trakt.py    | 70 ++++++++++++++++++++----
@@ -176,5 +176,5 @@ index deb6c83a2..da1c99427 100644
                      add_lazy_user_fields(entry, 'ratings', media_type='show', **credentials)
                      if is_season(entry):
 -- 
-2.20.1
+2.30.2
 
