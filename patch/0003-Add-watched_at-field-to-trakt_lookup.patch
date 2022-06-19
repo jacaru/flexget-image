@@ -1,7 +1,7 @@
-From 50c43012da8535cf7c217d16d6bea251ce7ce448 Mon Sep 17 00:00:00 2001
+From 41c278d2d26dea7478845f6d1e0c9a7404b7739d Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:11:29 +0200
-Subject: [PATCH 03/12] Add watched_at field to trakt_lookup
+Subject: [PATCH 03/13] Add watched_at field to trakt_lookup
 
 ---
  flexget/components/trakt/api_trakt.py    | 70 ++++++++++++++++++++----

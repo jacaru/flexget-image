@@ -1,7 +1,7 @@
-From 93582f75ae50ebf668b54dd2d311dc75060bbb96 Mon Sep 17 00:00:00 2001
+From a2a709e8a5991281393e8452dc8fdf8f632aa3bf Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Mon, 26 Apr 2021 17:57:05 +0200
-Subject: [PATCH 12/12] Fix imdb id for sonarr
+Subject: [PATCH 12/13] Fix imdb id for sonarr
 
 ---
  flexget/components/managed_lists/lists/sonarr_list.py | 2 +-

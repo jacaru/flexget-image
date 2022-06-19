@@ -1,7 +1,7 @@
-From 3a1376bdc5fe2e97e429a33bc695f5be3fdbbbda Mon Sep 17 00:00:00 2001
+From e30b25adcfe8abae0431aa9975d6ed3d1c152ab8 Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 00:05:39 +0200
-Subject: [PATCH 02/12] Add radarr_added field
+Subject: [PATCH 02/13] Add radarr_added field
 
 ---
  flexget/components/managed_lists/lists/radarr_list.py | 1 +

@@ -1,7 +1,7 @@
-From cbdf3203ec52b43e0ed59090e8a8d2df63079ac8 Mon Sep 17 00:00:00 2001
+From 11c4dc160830bce37d4d112ef702f93506dd0e43 Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:54:47 +0200
-Subject: [PATCH 11/12] Fix entry_list entry refresh on add
+Subject: [PATCH 11/13] Fix entry_list entry refresh on add
 
 ---
  flexget/components/managed_lists/lists/entry_list/db.py | 4 +++-

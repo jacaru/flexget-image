@@ -1,7 +1,7 @@
-From 92fc741f20f3d741d89370367f162703975fb03a Mon Sep 17 00:00:00 2001
+From 539db9b7bb21ba7797209bda65451ce4954a39e5 Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 26 Aug 2017 14:19:16 +0200
-Subject: [PATCH 10/12] Fix dump crash when config enabled without cli flag
+Subject: [PATCH 10/13] Fix dump crash when config enabled without cli flag
 
 ---
  flexget/plugins/output/dump.py | 2 +-

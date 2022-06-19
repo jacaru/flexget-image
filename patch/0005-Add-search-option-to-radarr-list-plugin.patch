@@ -1,7 +1,7 @@
-From d4f0e3662faa5105dce4c97fe20876ce756e308c Mon Sep 17 00:00:00 2001
+From 80de7c61f61e0568950bbd44822b06c94cf8e5fe Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:28:02 +0200
-Subject: [PATCH 05/12] Add search option to radarr list plugin
+Subject: [PATCH 05/13] Add search option to radarr list plugin
 
 ---
  flexget/components/managed_lists/lists/radarr_list.py | 3 +++
