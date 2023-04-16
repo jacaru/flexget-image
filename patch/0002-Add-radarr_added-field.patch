@@ -1,4 +1,4 @@
-From e30b25adcfe8abae0431aa9975d6ed3d1c152ab8 Mon Sep 17 00:00:00 2001
+From a43f462c84aea3e62a782d2028adfe38fbd742ca Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 00:05:39 +0200
 Subject: [PATCH 02/13] Add radarr_added field
@@ -8,7 +8,7 @@ Subject: [PATCH 02/13] Add radarr_added field
  1 file changed, 1 insertion(+)
 
 diff --git a/flexget/components/managed_lists/lists/radarr_list.py b/flexget/components/managed_lists/lists/radarr_list.py
-index 68881e50a..cc29a3a0b 100644
+index abfeb531f..653191d8c 100644
 --- a/flexget/components/managed_lists/lists/radarr_list.py
 +++ b/flexget/components/managed_lists/lists/radarr_list.py
 @@ -544,6 +544,7 @@ class RadarrSet(MutableSet):

@@ -1,4 +1,4 @@
-From 541d5f3362879dc8b4dc59709c7a9abb77b6a8dd Mon Sep 17 00:00:00 2001
+From 60db9e4fdc74205fef8b4ba7387a34a5dd143539 Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:38:57 +0200
 Subject: [PATCH 06/13] Add search option to sonarr_list plugin
@@ -8,7 +8,7 @@ Subject: [PATCH 06/13] Add search option to sonarr_list plugin
  1 file changed, 11 insertions(+), 2 deletions(-)
 
 diff --git a/flexget/components/managed_lists/lists/sonarr_list.py b/flexget/components/managed_lists/lists/sonarr_list.py
-index fc62081ae..5b33ef3f9 100644
+index 3e40185d9..fa8cb3865 100644
 --- a/flexget/components/managed_lists/lists/sonarr_list.py
 +++ b/flexget/components/managed_lists/lists/sonarr_list.py
 @@ -32,7 +32,7 @@ class SonarrSet(MutableSet):

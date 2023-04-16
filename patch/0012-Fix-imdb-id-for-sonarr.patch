@@ -1,4 +1,4 @@
-From a2a709e8a5991281393e8452dc8fdf8f632aa3bf Mon Sep 17 00:00:00 2001
+From e2577012fbc08f89abd5780c6a784e4286bed896 Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Mon, 26 Apr 2021 17:57:05 +0200
 Subject: [PATCH 12/13] Fix imdb id for sonarr
@@ -8,7 +8,7 @@ Subject: [PATCH 12/13] Fix imdb id for sonarr
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/flexget/components/managed_lists/lists/sonarr_list.py b/flexget/components/managed_lists/lists/sonarr_list.py
-index 5b33ef3f9..78e701d57 100644
+index fa8cb3865..a0a1eba64 100644
 --- a/flexget/components/managed_lists/lists/sonarr_list.py
 +++ b/flexget/components/managed_lists/lists/sonarr_list.py
 @@ -158,7 +158,7 @@ class SonarrSet(MutableSet):

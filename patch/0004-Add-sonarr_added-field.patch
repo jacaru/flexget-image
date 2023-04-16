@@ -1,4 +1,4 @@
-From 81face120f107fc72bccc70ee42bf94169baae83 Mon Sep 17 00:00:00 2001
+From ae44b4a2ae91df8ea262d1703f6c55e8b8231528 Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:14:01 +0200
 Subject: [PATCH 04/13] Add sonarr_added field
@@ -8,7 +8,7 @@ Subject: [PATCH 04/13] Add sonarr_added field
  1 file changed, 1 insertion(+)
 
 diff --git a/flexget/components/managed_lists/lists/sonarr_list.py b/flexget/components/managed_lists/lists/sonarr_list.py
-index 28f17105d..fc62081ae 100644
+index cea3e67f0..3e40185d9 100644
 --- a/flexget/components/managed_lists/lists/sonarr_list.py
 +++ b/flexget/components/managed_lists/lists/sonarr_list.py
 @@ -161,6 +161,7 @@ class SonarrSet(MutableSet):

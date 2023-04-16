@@ -1,4 +1,4 @@
-From dc9753742120fe904502da3fc540001d19c6bf3c Mon Sep 17 00:00:00 2001
+From d73abb7ae0884cc828b39c6b99d922529647358a Mon Sep 17 00:00:00 2001
 From: Jaime <1446775+jacaru@users.noreply.github.com>
 Date: Sun, 19 Jun 2022 16:56:06 +0200
 Subject: [PATCH 13/13] Fixed radarr & sonarr to use api v3 from PR#3051
@@ -9,7 +9,7 @@ Subject: [PATCH 13/13] Fixed radarr & sonarr to use api v3 from PR#3051
  2 files changed, 11 insertions(+), 9 deletions(-)
 
 diff --git a/flexget/components/managed_lists/lists/radarr_list.py b/flexget/components/managed_lists/lists/radarr_list.py
-index 8b857443f..cb884df4d 100644
+index 95ccf0cc9..21d2ec67e 100644
 --- a/flexget/components/managed_lists/lists/radarr_list.py
 +++ b/flexget/components/managed_lists/lists/radarr_list.py
 @@ -75,7 +75,7 @@ def request_delete_json(url, headers):
@@ -25,8 +25,8 @@ index 8b857443f..cb884df4d 100644
          if parsed_base_url.port:
              port = int(parsed_base_url.port)
  
--        self.api_url = "%s://%s:%s%s/api/" % (
-+        self.api_url = "%s://%s:%s%s/api/v3/" % (
+-        self.api_url = "{}://{}:{}{}/api/".format(
++        self.api_url = "{}://{}:{}{}/api/v3/".format(
              parsed_base_url.scheme,
              parsed_base_url.netloc,
              port,
@@ -67,7 +67,7 @@ index 8b857443f..cb884df4d 100644
                      profile_id = profile["id"]
                      if profile_id == movie_profile_id:
 diff --git a/flexget/components/managed_lists/lists/sonarr_list.py b/flexget/components/managed_lists/lists/sonarr_list.py
-index 78e701d57..6e7dc8729 100644
+index a0a1eba64..e254ce9c7 100644
 --- a/flexget/components/managed_lists/lists/sonarr_list.py
 +++ b/flexget/components/managed_lists/lists/sonarr_list.py
 @@ -12,7 +12,7 @@ logger = logger.bind(name='sonarr_list')
@@ -91,11 +91,11 @@ index 78e701d57..6e7dc8729 100644
          base_url = self.config['base_url']
          port = self.config['port']
          base_path = self.config['base_path']
--        url = '{}:{}{}/api/{}'.format(base_url, port, base_path, endpoint)
-+        url = '{}:{}{}/api/v3/{}'.format(base_url, port, base_path, endpoint)
+-        url = f'{base_url}:{port}{base_path}/api/{endpoint}'
++        url = f'{base_url}:{port}{base_path}/api/v3/{endpoint}'
          headers = {'X-Api-Key': self.config['api_key']}
          if term:
-             url += '?term={}'.format(term)
+             url += f'?term={term}'
 @@ -147,7 +148,7 @@ class SonarrSet(MutableSet):
                  # Checks if to retrieve ended shows
                  if show['status'] == 'ended' and not self.config.get('include_ended'):

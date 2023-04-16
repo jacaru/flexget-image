@@ -1,4 +1,4 @@
-From 41c278d2d26dea7478845f6d1e0c9a7404b7739d Mon Sep 17 00:00:00 2001
+From a35240b706bb21c547529b3babd6e710d1088594 Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:11:29 +0200
 Subject: [PATCH 03/13] Add watched_at field to trakt_lookup
@@ -9,10 +9,10 @@ Subject: [PATCH 03/13] Add watched_at field to trakt_lookup
  2 files changed, 62 insertions(+), 10 deletions(-)
 
 diff --git a/flexget/components/trakt/api_trakt.py b/flexget/components/trakt/api_trakt.py
-index 44dd3db6e..df1be1c9f 100644
+index 7df6093a6..0c5344d61 100644
 --- a/flexget/components/trakt/api_trakt.py
 +++ b/flexget/components/trakt/api_trakt.py
-@@ -63,6 +63,10 @@ class TraktUserCache(TimedDict):
+@@ -60,6 +60,10 @@ class TraktUserCache(TimedDict):
              cache[media_id] = media
              cache[media_id]['watched_at'] = dateutil_parse(media['last_watched_at'], ignoretz=True)
              cache[media_id]['plays'] = media['plays']
@@ -23,7 +23,7 @@ index 44dd3db6e..df1be1c9f 100644
  
      def _update_ratings_cache(self, cache, media_type, username=None, account=None):
          ratings = db.get_user_data(
-@@ -135,6 +139,12 @@ class ApiTrakt:
+@@ -132,6 +136,12 @@ class ApiTrakt:
                  'episode': self.is_episode_watched,
                  'movie': self.is_movie_watched,
              },
@@ -36,7 +36,7 @@ index 44dd3db6e..df1be1c9f 100644
              'collected': {
                  'show': self.is_show_in_collection,
                  'season': self.is_season_in_collection,
-@@ -327,9 +337,10 @@ class ApiTrakt:
+@@ -324,9 +334,10 @@ class ApiTrakt:
          )
          return in_collection
  
@@ -48,7 +48,7 @@ index 44dd3db6e..df1be1c9f 100644
          if trakt_data.id in cache:
              series = cache[trakt_data.id]
              # specials are not included
-@@ -337,34 +348,52 @@ class ApiTrakt:
+@@ -334,34 +345,52 @@ class ApiTrakt:
                  len(s['episodes']) for s in series['seasons'] if s['number'] > 0
              )
              is_watched = number_of_watched_episodes == trakt_data.aired_episodes
@@ -105,7 +105,7 @@ index 44dd3db6e..df1be1c9f 100644
          if trakt_data.show.id in cache:
              series = cache[trakt_data.show.id]
              for s in series['seasons']:
-@@ -372,23 +401,44 @@ class ApiTrakt:
+@@ -369,23 +398,44 @@ class ApiTrakt:
                      # extract all episode numbers currently in collection for the season number
                      episodes = [ep['number'] for ep in s['episodes']]
                      is_watched = trakt_data.number in episodes
@@ -156,10 +156,10 @@ index 44dd3db6e..df1be1c9f 100644
      def show_user_ratings(self, trakt_data, title):
          cache = user_cache.get_show_user_ratings(username=self.username, account=self.account)
 diff --git a/flexget/components/trakt/trakt_lookup.py b/flexget/components/trakt/trakt_lookup.py
-index deb6c83a2..da1c99427 100644
+index 539b41cf7..182520ae6 100644
 --- a/flexget/components/trakt/trakt_lookup.py
 +++ b/flexget/components/trakt/trakt_lookup.py
-@@ -221,6 +221,7 @@ def add_lazy_fields(entry: entry.Entry, lazy_lookup_name: str, media_type: str)
+@@ -221,6 +221,7 @@ def add_lazy_fields(entry: Entry, lazy_lookup_name: str, media_type: str) -> Non
  user_data_fields = {
      'collected': 'trakt_collected',
      'watched': 'trakt_watched',

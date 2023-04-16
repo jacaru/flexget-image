@@ -1,4 +1,4 @@
-From d3b7ee69c990309f1827592614df6c2fd1b3cc94 Mon Sep 17 00:00:00 2001
+From 67723b707b90659055205ac193deace5a00749e5 Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:42:20 +0200
 Subject: [PATCH 07/13] Fix manager to honor trask priorities on execute
@@ -8,10 +8,10 @@ Subject: [PATCH 07/13] Fix manager to honor trask priorities on execute
  1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/flexget/manager.py b/flexget/manager.py
-index a0f5096bb..0e29d0aba 100644
+index ea728fca5..e20a9bc2e 100644
 --- a/flexget/manager.py
 +++ b/flexget/manager.py
-@@ -268,7 +268,7 @@ class Manager:
+@@ -256,7 +256,7 @@ class Manager:
      def execute(
          self,
          options: Union[dict, argparse.Namespace] = None,
@@ -20,7 +20,7 @@ index a0f5096bb..0e29d0aba 100644
          suppress_warnings: Sequence[str] = None,
      ) -> List[Tuple[str, str, threading.Event]]:
          """
-@@ -321,13 +321,14 @@ class Manager:
+@@ -309,13 +309,14 @@ class Manager:
  
          finished_events = []
          for task_name in task_names:
