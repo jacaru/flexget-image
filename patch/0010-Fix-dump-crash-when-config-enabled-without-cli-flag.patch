@@ -1,17 +1,17 @@
-From 7f90a07372f04da341bdcd0179264f1cb0c0332b Mon Sep 17 00:00:00 2001
+From 33f8c62ccba167f03c89ec5c69c8e2e214c7049a Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 26 Aug 2017 14:19:16 +0200
-Subject: [PATCH 10/13] Fix dump crash when config enabled without cli flag
+Subject: [PATCH 10/12] Fix dump crash when config enabled without cli flag
 
 ---
  flexget/plugins/output/dump.py | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/flexget/plugins/output/dump.py b/flexget/plugins/output/dump.py
-index 2561eac14..535d01873 100644
+index 1784a3e16..17c83f689 100644
 --- a/flexget/plugins/output/dump.py
 +++ b/flexget/plugins/output/dump.py
-@@ -101,7 +101,7 @@ class OutputDump:
+@@ -107,7 +107,7 @@ class OutputDump:
  
      @plugin.priority(0)
      def on_task_output(self, task, config):

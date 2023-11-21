@@ -1,14 +1,14 @@
-From 9de9ddc204c0be7600d3c562c83975edfb5b4222 Mon Sep 17 00:00:00 2001
+From 1fa5c12bbabf34ed12c74ff6d66dcedcdc29437a Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:54:47 +0200
-Subject: [PATCH 11/13] Fix entry_list entry refresh on add
+Subject: [PATCH 11/12] Fix entry_list entry refresh on add
 
 ---
  flexget/components/managed_lists/lists/entry_list/db.py | 4 +++-
  1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/flexget/components/managed_lists/lists/entry_list/db.py b/flexget/components/managed_lists/lists/entry_list/db.py
-index ec15f18f6..9fe5a2584 100644
+index 13932949c..0d175fffb 100644
 --- a/flexget/components/managed_lists/lists/entry_list/db.py
 +++ b/flexget/components/managed_lists/lists/entry_list/db.py
 @@ -157,7 +157,9 @@ class DBEntrySet(MutableSet):

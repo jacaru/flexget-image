@@ -1,7 +1,7 @@
-From acbbf3ffa52efcd942b26cd36e0a5f5ed7b596e1 Mon Sep 17 00:00:00 2001
+From 3f4357bcab96024dce896c0a7d8f780a8e1d48a9 Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Fri, 23 Apr 2021 23:17:31 +0200
-Subject: [PATCH 01/13] Add colleted_at and listed_at as trakt_list fields
+Subject: [PATCH 01/12] Add colleted_at and listed_at as trakt_list fields
 
 ---
  flexget/components/trakt/trakt_list.py | 6 ++++++

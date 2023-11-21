@@ -1,14 +1,14 @@
-From 1d39a50762e040a11890d89d2f7c5efd1c59506f Mon Sep 17 00:00:00 2001
+From 76ff48ad4dbb94843ac46f410eb7325c7327f730 Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:46:44 +0200
-Subject: [PATCH 08/13] Fix entry_list search test for None of original_url
+Subject: [PATCH 08/12] Fix entry_list search test for None of original_url
 
 ---
  flexget/components/managed_lists/lists/entry_list/db.py | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/flexget/components/managed_lists/lists/entry_list/db.py b/flexget/components/managed_lists/lists/entry_list/db.py
-index 688b77be5..ec15f18f6 100644
+index bc770a34e..13932949c 100644
 --- a/flexget/components/managed_lists/lists/entry_list/db.py
 +++ b/flexget/components/managed_lists/lists/entry_list/db.py
 @@ -119,7 +119,7 @@ class DBEntrySet(MutableSet):

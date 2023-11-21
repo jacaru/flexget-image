@@ -1,17 +1,17 @@
-From fa333d7ea348fccd79d9b19e5b0ff98262f0da8c Mon Sep 17 00:00:00 2001
+From dba2b83fa905344046dde8bf236e53ba89febf85 Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:28:02 +0200
-Subject: [PATCH 05/13] Add search option to radarr list plugin
+Subject: [PATCH 05/12] Add search option to radarr list plugin
 
 ---
  flexget/components/managed_lists/lists/radarr_list.py | 3 +++
  1 file changed, 3 insertions(+)
 
 diff --git a/flexget/components/managed_lists/lists/radarr_list.py b/flexget/components/managed_lists/lists/radarr_list.py
-index 653191d8c..95ccf0cc9 100644
+index cde6a8a23..6a5acdb91 100644
 --- a/flexget/components/managed_lists/lists/radarr_list.py
 +++ b/flexget/components/managed_lists/lists/radarr_list.py
-@@ -395,6 +395,7 @@ class RadarrSet(MutableSet):
+@@ -394,6 +394,7 @@ class RadarrSet(MutableSet):
          if result:
              root_folders = self.service.get_root_folders()
              root_folder_path = root_folders[0]["path"]
@@ -19,7 +19,7 @@ index 653191d8c..95ccf0cc9 100644
  
              try:
                  self.service.add_movie(
-@@ -406,6 +407,7 @@ class RadarrSet(MutableSet):
+@@ -405,6 +406,7 @@ class RadarrSet(MutableSet):
                      result["tmdbId"],
                      root_folder_path,
                      monitored=self.config.get('monitored', False),
@@ -27,7 +27,7 @@ index 653191d8c..95ccf0cc9 100644
                      tags=self.get_tag_ids(entry),
                  )
                  logger.verbose('Added movie {} to Radarr list', result['title'])
-@@ -620,6 +622,7 @@ class RadarrList:
+@@ -619,6 +621,7 @@ class RadarrList:
              "api_key": {"type": "string"},
              "only_monitored": {"type": "boolean", "default": True},
              "include_data": {"type": "boolean", "default": False},
