@@ -1,7 +1,7 @@
-From 7a9b5ffd422953e1f0e22080ab391e2798e5ff1c Mon Sep 17 00:00:00 2001
+From fed5312de5887ce8e9ae8f68d795b5c50a7a611f Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:11:29 +0200
-Subject: [PATCH 03/12] Add watched_at field to trakt_lookup
+Subject: [PATCH 03/13] Add watched_at field to trakt_lookup
 
 ---
  flexget/components/trakt/api_trakt.py    | 70 ++++++++++++++++++++----
@@ -9,7 +9,7 @@ Subject: [PATCH 03/12] Add watched_at field to trakt_lookup
  2 files changed, 62 insertions(+), 10 deletions(-)
 
 diff --git a/flexget/components/trakt/api_trakt.py b/flexget/components/trakt/api_trakt.py
-index 186f27d82..1766e11bc 100644
+index 3379f80af..d3ab379e7 100644
 --- a/flexget/components/trakt/api_trakt.py
 +++ b/flexget/components/trakt/api_trakt.py
 @@ -60,6 +60,10 @@ class TraktUserCache(TimedDict):
@@ -156,10 +156,10 @@ index 186f27d82..1766e11bc 100644
      def show_user_ratings(self, trakt_data, title):
          cache = user_cache.get_show_user_ratings(username=self.username, account=self.account)
 diff --git a/flexget/components/trakt/trakt_lookup.py b/flexget/components/trakt/trakt_lookup.py
-index 539b41cf7..182520ae6 100644
+index c5ecf379d..602390978 100644
 --- a/flexget/components/trakt/trakt_lookup.py
 +++ b/flexget/components/trakt/trakt_lookup.py
-@@ -221,6 +221,7 @@ def add_lazy_fields(entry: Entry, lazy_lookup_name: str, media_type: str) -> Non
+@@ -220,6 +220,7 @@ def add_lazy_fields(entry: Entry, lazy_lookup_name: str, media_type: str) -> Non
  user_data_fields = {
      'collected': 'trakt_collected',
      'watched': 'trakt_watched',
@@ -167,7 +167,7 @@ index 539b41cf7..182520ae6 100644
      'ratings': {
          'show': 'trakt_series_user_rating',
          'season': 'trakt_season_user_rating',
-@@ -348,6 +349,7 @@ class PluginTraktLookup:
+@@ -346,6 +347,7 @@ class PluginTraktLookup:
                  if media_type:
                      add_lazy_user_fields(entry, 'collected', media_type=media_type, **credentials)
                      add_lazy_user_fields(entry, 'watched', media_type=media_type, **credentials)

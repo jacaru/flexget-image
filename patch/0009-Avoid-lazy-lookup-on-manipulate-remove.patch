@@ -1,14 +1,14 @@
-From eb15ec907200a688ca2c280ecdf72152fe38f219 Mon Sep 17 00:00:00 2001
+From 9c1704e6c726ad4b7e752d01515dc7f8907fd266 Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:51:09 +0200
-Subject: [PATCH 09/12] Avoid lazy lookup on manipulate remove
+Subject: [PATCH 09/13] Avoid lazy lookup on manipulate remove
 
 ---
  flexget/plugins/modify/manipulate.py | 12 +++++++-----
  1 file changed, 7 insertions(+), 5 deletions(-)
 
 diff --git a/flexget/plugins/modify/manipulate.py b/flexget/plugins/modify/manipulate.py
-index ad0f773dc..b5c13ee07 100644
+index 2c27d924c..fec103ba3 100644
 --- a/flexget/plugins/modify/manipulate.py
 +++ b/flexget/plugins/modify/manipulate.py
 @@ -109,6 +109,13 @@ class Manipulate:

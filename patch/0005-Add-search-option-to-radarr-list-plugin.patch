@@ -1,40 +1,45 @@
-From dba2b83fa905344046dde8bf236e53ba89febf85 Mon Sep 17 00:00:00 2001
+From d7e884f92a42a7f463944f52aec1421f6f470b6d Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:28:02 +0200
-Subject: [PATCH 05/12] Add search option to radarr list plugin
+Subject: [PATCH 05/13] Add search option to radarr list plugin
 
 ---
- flexget/components/managed_lists/lists/radarr_list.py | 3 +++
- 1 file changed, 3 insertions(+)
+ flexget/components/managed_lists/lists/radarr_list.py | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
 diff --git a/flexget/components/managed_lists/lists/radarr_list.py b/flexget/components/managed_lists/lists/radarr_list.py
-index cde6a8a23..6a5acdb91 100644
+index 9136f132d..910fd1ee0 100644
 --- a/flexget/components/managed_lists/lists/radarr_list.py
 +++ b/flexget/components/managed_lists/lists/radarr_list.py
-@@ -394,6 +394,7 @@ class RadarrSet(MutableSet):
+@@ -378,7 +378,12 @@ class RadarrSet(MutableSet):
+ 
          if result:
              root_folders = self.service.get_root_folders()
-             root_folder_path = root_folders[0]["path"]
++<<<<<<< HEAD
+             root_folder_path = root_folders[0]['path']
++=======
++            root_folder_path = root_folders[0]["path"]
 +            add_options = {'searchForMovie': True } if self.config.get('search') else None
++>>>>>>> dba2b83fa (Add search option to radarr list plugin)
  
              try:
                  self.service.add_movie(
-@@ -405,6 +406,7 @@ class RadarrSet(MutableSet):
-                     result["tmdbId"],
+@@ -390,6 +395,7 @@ class RadarrSet(MutableSet):
+                     result['tmdbId'],
                      root_folder_path,
                      monitored=self.config.get('monitored', False),
 +                    add_options=add_options,
                      tags=self.get_tag_ids(entry),
                  )
                  logger.verbose('Added movie {} to Radarr list', result['title'])
-@@ -619,6 +621,7 @@ class RadarrList:
-             "api_key": {"type": "string"},
-             "only_monitored": {"type": "boolean", "default": True},
-             "include_data": {"type": "boolean", "default": False},
-+            "search": {"type": "boolean", "default": False},
-             "only_use_cutoff_quality": {"type": "boolean", "default": False},
-             "monitored": {"type": "boolean", "default": True},
-             "profile_id": {"type": "integer", "default": 1},
+@@ -590,6 +596,7 @@ class RadarrList:
+             'api_key': {'type': 'string'},
+             'only_monitored': {'type': 'boolean', 'default': True},
+             'include_data': {'type': 'boolean', 'default': False},
++            'search': {'type': 'boolean', 'default': False},
+             'only_use_cutoff_quality': {'type': 'boolean', 'default': False},
+             'monitored': {'type': 'boolean', 'default': True},
+             'profile_id': {'type': 'integer', 'default': 1},
 -- 
 2.30.2
 

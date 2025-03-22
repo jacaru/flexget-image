@@ -1,17 +1,17 @@
-From 3f4357bcab96024dce896c0a7d8f780a8e1d48a9 Mon Sep 17 00:00:00 2001
+From 394d3e5c5cdde83332411ab84f4daa17443c2ed9 Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Fri, 23 Apr 2021 23:17:31 +0200
-Subject: [PATCH 01/12] Add colleted_at and listed_at as trakt_list fields
+Subject: [PATCH 01/13] Add colleted_at and listed_at as trakt_list fields
 
 ---
  flexget/components/trakt/trakt_list.py | 6 ++++++
  1 file changed, 6 insertions(+)
 
 diff --git a/flexget/components/trakt/trakt_list.py b/flexget/components/trakt/trakt_list.py
-index 0667657b7..da8e1c880 100644
+index 6aed29307..45d9223fa 100644
 --- a/flexget/components/trakt/trakt_list.py
 +++ b/flexget/components/trakt/trakt_list.py
-@@ -63,6 +63,8 @@ field_maps = {
+@@ -61,6 +61,8 @@ field_maps = {
          'tmdb_id': 'movie.ids.tmdb',
          'trakt_movie_id': 'movie.ids.trakt',
          'trakt_movie_slug': 'movie.ids.slug',
@@ -20,7 +20,7 @@ index 0667657b7..da8e1c880 100644
      },
      'show': {
          'title': generate_show_title,
-@@ -75,6 +77,8 @@ field_maps = {
+@@ -73,6 +75,8 @@ field_maps = {
          'tmdb_id': 'show.ids.tmdb',
          'trakt_show_id': 'show.ids.trakt',
          'trakt_show_slug': 'show.ids.slug',

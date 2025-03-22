@@ -1,14 +1,14 @@
-From 556868a194f607cbc059cb2beef10fc173bb4ce8 Mon Sep 17 00:00:00 2001
+From 90616104d15f5ae299fc669280251ce5422ff6f3 Mon Sep 17 00:00:00 2001
 From: Your Name <1446775+jacaru@users.noreply.github.com>
 Date: Mon, 8 Jan 2024 22:40:41 +0100
-Subject: [PATCH] Log non-matched conditions
+Subject: [PATCH 13/13] Log non-matched conditions
 
 ---
  flexget/plugins/filter/if_condition.py | 2 ++
  1 file changed, 2 insertions(+)
 
 diff --git a/flexget/plugins/filter/if_condition.py b/flexget/plugins/filter/if_condition.py
-index d42770da0..e56aa7e67 100644
+index 392561c7a..2c1a80e77 100644
 --- a/flexget/plugins/filter/if_condition.py
 +++ b/flexget/plugins/filter/if_condition.py
 @@ -43,6 +43,8 @@ class FilterIf:
@@ -17,9 +17,9 @@ index d42770da0..e56aa7e67 100644
                  logger.debug('{} matched requirement {}', entry['title'], condition)
 +            else:
 +                logger.trace('{} did not match requirement {}', entry['title'], condition)
-             return passed
          except UndefinedError as e:
              # Extract the name that did not exist
+             missing_field = e.args[0].split("'")[1]
 -- 
 2.30.2
 

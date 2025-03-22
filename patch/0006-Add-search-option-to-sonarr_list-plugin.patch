@@ -1,14 +1,14 @@
-From b358036f2ddc8729e911509e716141072bbdd8ab Mon Sep 17 00:00:00 2001
+From 754ba5e0d8653cb94c484770eec494a0b61d3f25 Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:38:57 +0200
-Subject: [PATCH 06/12] Add search option to sonarr_list plugin
+Subject: [PATCH 06/13] Add search option to sonarr_list plugin
 
 ---
- .../components/managed_lists/lists/sonarr_list.py   | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+ .../components/managed_lists/lists/sonarr_list.py    | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
 
 diff --git a/flexget/components/managed_lists/lists/sonarr_list.py b/flexget/components/managed_lists/lists/sonarr_list.py
-index e2f6babf9..dc7f2dad5 100644
+index 5e2419e0f..6ad90ebe1 100644
 --- a/flexget/components/managed_lists/lists/sonarr_list.py
 +++ b/flexget/components/managed_lists/lists/sonarr_list.py
 @@ -32,7 +32,7 @@ class SonarrSet(MutableSet):
@@ -20,11 +20,8 @@ index e2f6babf9..dc7f2dad5 100644
              'ignore_episodes_without_files': {'type': 'boolean', 'default': False},
              'ignore_episodes_with_files': {'type': 'boolean', 'default': False},
              'profile_id': {'type': 'integer', 'default': 1},
-@@ -218,9 +218,18 @@ class SonarrSet(MutableSet):
-         show['addOptions'] = {
-             "ignoreEpisodesWithFiles": self.config.get('ignore_episodes_with_files'),
-             "ignoreEpisodesWithoutFiles": self.config.get('ignore_episodes_without_files'),
--            "searchForMissingEpisodes": self.config.get('search_missing_episodes'),
+@@ -219,6 +219,16 @@ class SonarrSet(MutableSet):
+             'searchForMissingEpisodes': self.config.get('search_missing_episodes'),
          }
  
 +        if self.config.get('searchForMissingEpisodes') == 'no':
@@ -38,8 +35,8 @@ index e2f6babf9..dc7f2dad5 100644
 +                    season['monitored'] = False
 +
          logger.debug('adding show {} to sonarr', show)
-         returned_show = self._sonarr_request(SERIES_ENDPOINT, method='post', data=show)
-         return returned_show
+         return self._sonarr_request(SERIES_ENDPOINT, method='post', data=show)
+ 
 -- 
 2.30.2
 
