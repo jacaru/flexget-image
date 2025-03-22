@@ -1,17 +1,17 @@
-From 1fa5c12bbabf34ed12c74ff6d66dcedcdc29437a Mon Sep 17 00:00:00 2001
+From f2f239239b952ecb6bd07b8f1c64aad3a16f27d4 Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:54:47 +0200
-Subject: [PATCH 11/12] Fix entry_list entry refresh on add
+Subject: [PATCH 11/13] Fix entry_list entry refresh on add
 
 ---
  flexget/components/managed_lists/lists/entry_list/db.py | 4 +++-
  1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/flexget/components/managed_lists/lists/entry_list/db.py b/flexget/components/managed_lists/lists/entry_list/db.py
-index 13932949c..0d175fffb 100644
+index 778fe51a9..7176f9a07 100644
 --- a/flexget/components/managed_lists/lists/entry_list/db.py
 +++ b/flexget/components/managed_lists/lists/entry_list/db.py
-@@ -157,7 +157,9 @@ class DBEntrySet(MutableSet):
+@@ -155,7 +155,9 @@ class DBEntrySet(MutableSet):
              if stored_entry:
                  # Refresh all the fields if we already have this entry
                  logger.debug('refreshing entry {}', entry)
