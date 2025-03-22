@@ -39,9 +39,7 @@ jobs:
         run: |
           tag="${{ steps.meta.outputs.version }}"
           version=${tag%-mod*}
-          tag="${tag:-$GITHUB_REF}"
           echo "version=$version" >> $GITHUB_OUTPUT
-          echo "tag=$tag" >> $GITHUB_OUTPUT
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
@@ -49,7 +47,7 @@ jobs:
           file: Dockerfile.armhf
           platforms: linux/arm64
           push: true
-          tags: ${{ steps.extract.outputs.tag }}
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             VERSION=${{ steps.extract.outputs.version }}
