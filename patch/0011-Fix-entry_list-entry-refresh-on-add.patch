@@ -1,4 +1,4 @@
-From f2f239239b952ecb6bd07b8f1c64aad3a16f27d4 Mon Sep 17 00:00:00 2001
+From 12a2e12a37ca5b7e6c47724ec51f374219e60f17 Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:54:47 +0200
 Subject: [PATCH 11/13] Fix entry_list entry refresh on add

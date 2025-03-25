@@ -1,4 +1,4 @@
-From d77f16206f420cfa49c7e1e36939a0e4db254514 Mon Sep 17 00:00:00 2001
+From 926bb69e500ef27f13b72cfb80dd964df0223a4a Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:46:44 +0200
 Subject: [PATCH 08/13] Fix entry_list search test for None of original_url

@@ -1,4 +1,4 @@
-From 754ba5e0d8653cb94c484770eec494a0b61d3f25 Mon Sep 17 00:00:00 2001
+From badf6c02d166c00cd5e20a3e7ccebb1fe927b981 Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:38:57 +0200
 Subject: [PATCH 06/13] Add search option to sonarr_list plugin

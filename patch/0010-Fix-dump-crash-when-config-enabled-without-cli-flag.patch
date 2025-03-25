@@ -1,4 +1,4 @@
-From 73680894e44ac34206db10b2668b09cc42993bcc Mon Sep 17 00:00:00 2001
+From a38cc483a9baa35acbb3b41cd8d533d1a1a28a53 Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 26 Aug 2017 14:19:16 +0200
 Subject: [PATCH 10/13] Fix dump crash when config enabled without cli flag

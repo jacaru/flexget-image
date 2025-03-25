@@ -1,4 +1,4 @@
-From c18ce91c342e9dc892dfe1b20af3191948551ea5 Mon Sep 17 00:00:00 2001
+From 18549d622bdf6dd6baab5180f05e9d3d87c5634c Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Mon, 26 Apr 2021 17:57:05 +0200
 Subject: [PATCH 12/13] Fix imdb id for sonarr

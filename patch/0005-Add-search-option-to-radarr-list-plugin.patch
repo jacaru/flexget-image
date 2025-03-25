@@ -1,30 +1,25 @@
-From d7e884f92a42a7f463944f52aec1421f6f470b6d Mon Sep 17 00:00:00 2001
+From dac01d607b771effa27cad3a758ccf41f9ca0402 Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:28:02 +0200
 Subject: [PATCH 05/13] Add search option to radarr list plugin
 
 ---
- flexget/components/managed_lists/lists/radarr_list.py | 7 +++++++
- 1 file changed, 7 insertions(+)
+ flexget/components/managed_lists/lists/radarr_list.py | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/flexget/components/managed_lists/lists/radarr_list.py b/flexget/components/managed_lists/lists/radarr_list.py
-index 9136f132d..910fd1ee0 100644
+index 9136f132d..52920f686 100644
 --- a/flexget/components/managed_lists/lists/radarr_list.py
 +++ b/flexget/components/managed_lists/lists/radarr_list.py
-@@ -378,7 +378,12 @@ class RadarrSet(MutableSet):
- 
+@@ -379,6 +379,7 @@ class RadarrSet(MutableSet):
          if result:
              root_folders = self.service.get_root_folders()
-+<<<<<<< HEAD
              root_folder_path = root_folders[0]['path']
-+=======
-+            root_folder_path = root_folders[0]["path"]
 +            add_options = {'searchForMovie': True } if self.config.get('search') else None
-+>>>>>>> dba2b83fa (Add search option to radarr list plugin)
  
              try:
                  self.service.add_movie(
-@@ -390,6 +395,7 @@ class RadarrSet(MutableSet):
+@@ -390,6 +391,7 @@ class RadarrSet(MutableSet):
                      result['tmdbId'],
                      root_folder_path,
                      monitored=self.config.get('monitored', False),
@@ -32,7 +27,7 @@ index 9136f132d..910fd1ee0 100644
                      tags=self.get_tag_ids(entry),
                  )
                  logger.verbose('Added movie {} to Radarr list', result['title'])
-@@ -590,6 +596,7 @@ class RadarrList:
+@@ -590,6 +592,7 @@ class RadarrList:
              'api_key': {'type': 'string'},
              'only_monitored': {'type': 'boolean', 'default': True},
              'include_data': {'type': 'boolean', 'default': False},
