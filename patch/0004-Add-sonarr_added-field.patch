@@ -1,4 +1,4 @@
-From bb91d2cf4fc63373a7d37168185221ca0bcd0f25 Mon Sep 17 00:00:00 2001
+From e4e26f1bc43093725c3acdea232935deb45f2fab Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:14:01 +0200
 Subject: [PATCH 04/13] Add sonarr_added field
@@ -20,5 +20,5 @@ index 200f651ba..5e2419e0f 100644
              if len(fg_qualities) > 1:
                  entry['configure_series_qualities'] = fg_qualities
 -- 
-2.30.2
+2.47.3
 

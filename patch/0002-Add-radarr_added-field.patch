@@ -1,4 +1,4 @@
-From b715583a0bd70011712ddae6a0ebf7262dc7158d Mon Sep 17 00:00:00 2001
+From 2986428809e857b246c94a077ae3d99bb28751ca Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 00:05:39 +0200
 Subject: [PATCH 02/13] Add radarr_added field
@@ -8,10 +8,10 @@ Subject: [PATCH 02/13] Add radarr_added field
  1 file changed, 1 insertion(+)
 
 diff --git a/flexget/components/managed_lists/lists/radarr_list.py b/flexget/components/managed_lists/lists/radarr_list.py
-index bed0dcf0d..9136f132d 100644
+index e97f8f80a..8cb91069b 100644
 --- a/flexget/components/managed_lists/lists/radarr_list.py
 +++ b/flexget/components/managed_lists/lists/radarr_list.py
-@@ -516,6 +516,7 @@ class RadarrSet(MutableSet):
+@@ -515,6 +515,7 @@ class RadarrSet(MutableSet):
                  title=movie['title'],
                  url='',
                  radarr_id=movie['id'],
@@ -20,5 +20,5 @@ index bed0dcf0d..9136f132d 100644
                  movie_year=movie['year'],
              )
 -- 
-2.30.2
+2.47.3
 

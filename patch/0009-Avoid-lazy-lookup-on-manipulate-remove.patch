@@ -1,17 +1,17 @@
-From 0de059d196d2f3938a8e08071739524835a0c12c Mon Sep 17 00:00:00 2001
+From 2ecc26175348297c002e260a0ad3c75261b6eec6 Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:51:09 +0200
 Subject: [PATCH 09/13] Avoid lazy lookup on manipulate remove
 
 ---
- flexget/plugins/modify/manipulate.py | 12 +++++++-----
- 1 file changed, 7 insertions(+), 5 deletions(-)
+ flexget/plugins/modify/manipulate.py | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
 
 diff --git a/flexget/plugins/modify/manipulate.py b/flexget/plugins/modify/manipulate.py
-index 2c27d924c..fec103ba3 100644
+index 34bf82ed4..c1007304d 100644
 --- a/flexget/plugins/modify/manipulate.py
 +++ b/flexget/plugins/modify/manipulate.py
-@@ -109,6 +109,13 @@ class Manipulate:
+@@ -121,6 +121,13 @@ class Manipulate:
                  from_field = field
                  if 'from' in config:
                      from_field = config['from']
@@ -25,18 +25,19 @@ index 2c27d924c..fec103ba3 100644
                  field_value = entry.get(from_field)
                  logger.debug(
                      'field: `{}` from_field: `{}` field_value: `{}`',
-@@ -116,11 +123,6 @@ class Manipulate:
+@@ -128,12 +135,6 @@ class Manipulate:
                      from_field,
                      field_value,
                  )
 -                if config.get('remove'):
+-                    # Remove entire field
 -                    if field in entry:
 -                        del entry[field]
 -                        modified = True
 -                    continue
-                 if 'extract' in config:
+                 if config.get('erase'):
+                     # Erase text matching regex patterns
                      if not field_value:
-                         logger.warning('Cannot extract, field `{}` is not present', from_field)
 -- 
-2.30.2
+2.47.3
 

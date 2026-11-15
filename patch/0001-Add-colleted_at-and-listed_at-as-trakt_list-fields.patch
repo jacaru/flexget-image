@@ -1,4 +1,4 @@
-From 394d3e5c5cdde83332411ab84f4daa17443c2ed9 Mon Sep 17 00:00:00 2001
+From acaf9fc33cf3bb4d62ba610f65597bd0b4d74ddf Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Fri, 23 Apr 2021 23:17:31 +0200
 Subject: [PATCH 01/13] Add colleted_at and listed_at as trakt_list fields
@@ -39,5 +39,5 @@ index 6aed29307..45d9223fa 100644
  }
  
 -- 
-2.30.2
+2.47.3
 

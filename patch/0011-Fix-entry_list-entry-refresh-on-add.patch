@@ -1,4 +1,4 @@
-From d5c46d2400db1a0aa3d0540d6048a78efbaee298 Mon Sep 17 00:00:00 2001
+From 3baefab96455b32543d57359c4a91b370ced3ff9 Mon Sep 17 00:00:00 2001
 From: jacaru <1446775+jacaru@users.noreply.github.com>
 Date: Sat, 24 Apr 2021 01:54:47 +0200
 Subject: [PATCH 11/13] Fix entry_list entry refresh on add
@@ -8,10 +8,10 @@ Subject: [PATCH 11/13] Fix entry_list entry refresh on add
  1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/flexget/components/managed_lists/lists/entry_list/db.py b/flexget/components/managed_lists/lists/entry_list/db.py
-index 778fe51a9..7176f9a07 100644
+index 67fc32bee..bd7ceec5a 100644
 --- a/flexget/components/managed_lists/lists/entry_list/db.py
 +++ b/flexget/components/managed_lists/lists/entry_list/db.py
-@@ -155,7 +155,9 @@ class DBEntrySet(MutableSet):
+@@ -160,7 +160,9 @@ class DBEntrySet(MutableSet):
              if stored_entry:
                  # Refresh all the fields if we already have this entry
                  logger.debug('refreshing entry {}', entry)
@@ -23,5 +23,5 @@ index 778fe51a9..7176f9a07 100644
                  logger.debug('adding entry {} to list {}', entry, self._db_list(session).name)
                  stored_entry = EntryListEntry(entry=entry, entry_list_id=self._db_list(session).id)
 -- 
-2.30.2
+2.47.3
 
